@@ -1,35 +1,74 @@
+
+
+
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: "jdbc:mysql://localhost:3306/history_gradle_security?useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
+    #    password: "${MYSQLPASS:}"
+    url: "jdbc:mysql://localhost:3306/music_gradle_security?useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
     username: root
     password: 810129
-  sql:
-    init:
-      mode: always
-  jpa:
-    # Choose either MySQL 8 or MySQL 5 below
-    # For MySQL 8
-    #database-platform: org.hibernate.dialect.MySQL8Dialect
-    #For MySQL 5
-    database-platform: org.hibernate.dialect.MySQLDialect
-    hibernate:
-      ddl-auto: update
-    open-in-view: false
-    properties:
-      hibernate:
-        format_sql: true
-    defer-datasource-initialization: true
+  servlet:
+    multipart:
+      max-file-size: 1MB
+      max-request-size: 5MB
   mvc:
     hidden-method:
       filter:
         enabled: true
+  jpa:
+    #    For MySQL 8
+    #database-platform: org.hibernate.dialect.MySQL8Dialect
+    #For MySQL 5
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+     hibernate:
+        format_sql: true
+        app:
+          default:
+            password: pako
+     logging:
+       level:
+        org.springframework.security: TRACE
+carousel:
+    images: aerosmith.jpeg, iron.jpeg, madonna.jpg, metallica.jpg, queen.jpg, rolling.jpeg
+    refresh-cron: "0 */10 * * * *"
 
-app:
-  default:
-    password: pako
+
+
+
+#spring:
+#  datasource:
+#    driverClassName: com.mysql.cj.jdbc.Driver
+#    url: "jdbc:mysql://localhost:3306/music_gradle_security?useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
+#    username: root
+#    password: 810129
+#    servlet:
+#      multipart:
+#        max-file-size: 1MB
+#        max-request-size: 5MB
+#      mvc:
+#        hidden-method:
+#          filter:
+#            enabled: true
+#
+#      jpa:
+#        #    For MySQL 8
+#        #database-platform: org.hibernate.dialect.MySQL8Dialect
+#        #For MySQL 5
+#        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+#        hibernate:
+#          ddl-auto: update
+#        open-in-view: false
+#        properties:
+#          hibernate:
+#            format_sql: true
+#    carousel:
+#      images: aerosmith.jpeg, iron.jpeg, madonna.jpg, metallica.jpg, queen.jpg, rolling.jpeg
+#      refresh-cron: "0 */10 * * * *"
+#
 server:
-  port: 1030
-logging:
-  level:
-    org.springframework.security: TRACE
+  port: 6

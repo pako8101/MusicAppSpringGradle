@@ -7,4 +7,4 @@ services:
     command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_bin']
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD="yes"
-      - MYSQL_DATABASE=spring_data_lab_db
+      - MYSQL_DATABASE=music_gradle_security

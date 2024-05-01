@@ -1,4 +1,4 @@
-package bg.softuni.musicdb.model.entities.enums;
+package MusicAppSpringGradle.models.enums;
 
 public enum UserRole {
   ADMIN,

@@ -1,10 +1,8 @@
-package bg.softuni.musicdb.model.entities;
+package MusicAppSpringGradle.models.entities;
 
-import bg.softuni.musicdb.model.entities.enums.UserRole;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
+import MusicAppSpringGradle.models.enums.UserRole;
+import javax.persistence.*;
+
 
 @Entity
 @Table(name = "roles")
