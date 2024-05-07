@@ -45,17 +45,21 @@
                        sec:authorize="!isAuthenticated()"
                        th:href="@{/users/register}">Register</a>
                 </li>
-
-                <li class="nav-item ">
-                    <a class="nav-link text-white active h5" href="/albums/add">Add Album</a>
+                <li  class="nav-item col-md-4">
+                   <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                       <button type="submit" class=" nav-link">Logout</button>
+                   </form>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link text-white active h5" href="/articles/all">All articles</a>
+                    <a class="nav-link text-white active h5"
+                       sec:authorize="isAuthenticated()"
+                       href="/albums/add">Add Album</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white active h5" href="/articles/all">All articles</a>
+                <li class="nav-item ">
+                    <a class="nav-link text-white active h5"
+                       sec:authorize="isAuthenticated()"
+                       href="/articles/all">All articles</a>
                 </li>
-
             </ul>
         </div>
     </nav>

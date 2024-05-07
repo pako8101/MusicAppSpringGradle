@@ -3,6 +3,7 @@ package MusicAppSpringGradle.service.impl;
 import MusicAppSpringGradle.models.entities.UserEntity;
 import MusicAppSpringGradle.models.entities.UserRoleEntity;
 import MusicAppSpringGradle.models.enums.UserRole;
+import MusicAppSpringGradle.models.service.UserRegistrationServiceModel;
 import MusicAppSpringGradle.repositories.UserRepository;
 import MusicAppSpringGradle.repositories.UserRoleRepository;
 import MusicAppSpringGradle.service.UserService;
@@ -44,5 +45,10 @@ public class UserServiceImpl implements UserService {
             userRepository.saveAll(List.of(admin,user));
         }
 
+    }
+
+    @Override
+    public void registerAndLogin(UserRegistrationServiceModel serviceModel) {
+        throw new UnsupportedOperationException();
     }
 }
