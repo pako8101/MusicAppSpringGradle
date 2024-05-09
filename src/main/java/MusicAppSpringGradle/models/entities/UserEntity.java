@@ -15,7 +15,7 @@ public class UserEntity extends BaseEntity {
   private String password;
 
   @Column(nullable = false)
-  private String fullname;
+  private String fullName;
 
   @ManyToMany(fetch = FetchType.EAGER)
   private List<UserRoleEntity> roles = new ArrayList<>();
@@ -38,12 +38,12 @@ public class UserEntity extends BaseEntity {
     return this;
   }
 
-  public String getFullname() {
-    return fullname;
+  public String getFullName() {
+    return fullName;
   }
 
-  public UserEntity setFullname(String fullname) {
-    this.fullname = fullname;
+  public UserEntity setFullName(String fullName) {
+    this.fullName = fullName;
     return this;
   }
 

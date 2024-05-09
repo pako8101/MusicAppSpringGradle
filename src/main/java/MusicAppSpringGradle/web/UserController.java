@@ -1,5 +1,9 @@
 package MusicAppSpringGradle.web;
 
+import MusicAppSpringGradle.models.bindings.UserRegistrationBindingModel;
+import MusicAppSpringGradle.models.service.UserRegistrationServiceModel;
+import MusicAppSpringGradle.service.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,11 +12,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
-
 @Controller
 @RequestMapping("/users")
 public class UserController {
+private final ModelMapper modelMapper;
+    private final UserService userService;
+
+    public UserController(ModelMapper modelMapper, UserService userService) {
+        this.modelMapper = modelMapper;
+        this.userService = userService;
+    }
 
     @GetMapping("/login")
     public String login(){
@@ -22,6 +31,18 @@ public class UserController {
     public String register(){
         return "register";
     }
+
+    @PostMapping("/register")
+    public String registerAndLogin(UserRegistrationBindingModel registrationBindingModel){
+      UserRegistrationServiceModel userRegistrationServiceModel =
+modelMapper.map(registrationBindingModel, UserRegistrationServiceModel.class);
+
+      userService.registerAndLogin(userRegistrationServiceModel);
+
+      return "redirect:/home";
+    }
+
+
 
     @PostMapping("/users/login-error")
     public ModelAndView failedLogin(@ModelAttribute
