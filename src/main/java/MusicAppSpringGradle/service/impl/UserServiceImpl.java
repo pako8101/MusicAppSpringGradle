@@ -86,4 +86,9 @@ UserRoleEntity userRole =
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
     }
+
+    @Override
+    public boolean userNameExist(String username) {
+        return userRepository.findByUsername(username).isPresent();
+    }
 }

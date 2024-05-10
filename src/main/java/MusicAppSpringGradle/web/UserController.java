@@ -49,6 +49,13 @@ UserRegistrationBindingModel userRegistrationBindingModel(){
                     bindingResult);
             return "redirect:/users/register";
         }
+        if (userService.userNameExist(registrationBindingModel.getUsername())) {
+            redirectAttributes.addFlashAttribute("registrationBindingModel",registrationBindingModel);
+            redirectAttributes.addFlashAttribute("userExistsError",
+                    bindingResult);
+            return "redirect:/users/register";
+
+        }
 
       UserRegistrationServiceModel userRegistrationServiceModel =
 modelMapper.map(registrationBindingModel, UserRegistrationServiceModel.class);

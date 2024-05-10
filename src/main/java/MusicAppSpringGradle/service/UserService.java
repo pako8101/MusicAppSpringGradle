@@ -7,4 +7,6 @@ public interface UserService {
     void seedUsers();
 
     void registerAndLogin(UserRegistrationServiceModel serviceModel);
+
+    boolean userNameExist(String username);
 }
