@@ -63,6 +63,7 @@ public class UserServiceImpl implements UserService {
     public void registerAndLogin(UserRegistrationServiceModel serviceModel) {
 
         UserEntity newUser = modelMapper.map(serviceModel,UserEntity.class);
+        newUser.setPassword(passwordEncoder.encode(serviceModel.getPassword()));
 UserRoleEntity userRole =
         userRoleRepository.findByRole(UserRole.USER).orElseThrow(()
                 -> new IllegalStateException("User role not found" +

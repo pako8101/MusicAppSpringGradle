@@ -42,7 +42,7 @@ private final PasswordEncoder passwordEncoder;
                 .failureForwardUrl("/users/login-error")
                 .and()
                 .logout()
-                .logoutUrl("/users/logout")
+                .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")

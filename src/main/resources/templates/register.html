@@ -11,12 +11,12 @@
     <h1 class="text-light border-bottom">Register</h1>
     <div class="d-flex justify-content-center ">
         <div class="row g-3 align-items-center">
-            <img alt="Picture of Madonna" src="/images/madonna.jpg" class="w-50 rounded">
+            <img alt="Picture of Madonna" th:src="@{/images/madonna.jpg}" class="w-50 rounded">
         </div>
         <div class="row g-3">
             <form
-                action="/"
-              
+                th:action="@{/users/register}"
+              th:object="${registrationBindingModel}"
                 method="POST">
                 <!-- Username -->
                 <div>
@@ -24,7 +24,8 @@
                         <label for="inputUsername" class="col-form-label text-light">Username</label>
                     </div>
                     <div class="col-auto">
-                        <input name="username"
+                        <input th:value="*{username}"
+                                name="username"
                                type="text"
                                id="inputUsername"
                                class="form-control"

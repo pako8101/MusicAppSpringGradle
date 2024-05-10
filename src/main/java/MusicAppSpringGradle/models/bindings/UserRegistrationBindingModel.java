@@ -1,11 +1,29 @@
 package MusicAppSpringGradle.models.bindings;
 
-public class UserRegistrationBindingModel {
+import MusicAppSpringGradle.models.validators.FieldMatch;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+@FieldMatch(
+        first = "password",
+        second = "confirmPassword"
+)
+public class UserRegistrationBindingModel {
+@Min(3)
+@NotEmpty
     private String username;
+@Email
+@NotEmpty
     private String email;
+    @Min(3)
+    @NotEmpty
     private String fullName;
+    @Size(min = 5,max = 20)
+    @NotEmpty
     private String password;
+    @NotEmpty
     private String confirmPassword;
 
     public String getUsername() {

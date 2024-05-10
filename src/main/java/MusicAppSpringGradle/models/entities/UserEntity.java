@@ -24,8 +24,8 @@ public class UserEntity extends BaseEntity {
     return username;
   }
 
-  public UserEntity setUsername(String name) {
-    this.username = name;
+  public UserEntity setUsername(String username) {
+    this.username = username;
     return this;
   }
 

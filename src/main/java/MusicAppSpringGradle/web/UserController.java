@@ -6,11 +6,15 @@ import MusicAppSpringGradle.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/users")
@@ -22,7 +26,10 @@ private final ModelMapper modelMapper;
         this.modelMapper = modelMapper;
         this.userService = userService;
     }
-
+@ModelAttribute ("registrationBindingModel")
+UserRegistrationBindingModel userRegistrationBindingModel(){
+        return new UserRegistrationBindingModel();
+}
     @GetMapping("/login")
     public String login(){
         return "login";
@@ -33,7 +40,16 @@ private final ModelMapper modelMapper;
     }
 
     @PostMapping("/register")
-    public String registerAndLogin(UserRegistrationBindingModel registrationBindingModel){
+    public String registerAndLogin(@Valid UserRegistrationBindingModel registrationBindingModel,
+                                   BindingResult bindingResult,
+                                   RedirectAttributes redirectAttributes){
+        if (bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute("registrationBindingModel",registrationBindingModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registrationBindingModel",
+                    bindingResult);
+            return "redirect:/users/register";
+        }
+
       UserRegistrationServiceModel userRegistrationServiceModel =
 modelMapper.map(registrationBindingModel, UserRegistrationServiceModel.class);
 
