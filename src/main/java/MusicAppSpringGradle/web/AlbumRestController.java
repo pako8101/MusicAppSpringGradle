@@ -1,6 +1,7 @@
 package MusicAppSpringGradle.web;
 
 import MusicAppSpringGradle.models.bindings.AlbumBindingModel;
+import MusicAppSpringGradle.models.view.AlbumViewModel;
 import MusicAppSpringGradle.repositories.AlbumRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +23,10 @@ public class AlbumRestController {
     }
 
     @GetMapping("/api")
-    public List<AlbumBindingModel> findAll(){
+    public List<AlbumViewModel> findAll(){
 
        return albumRepository.findAll().stream()
-                .map(albumEntity -> modelMapper.map(albumEntity, AlbumBindingModel.class))
+                .map(albumEntity -> modelMapper.map(albumEntity, AlbumViewModel.class))
                .collect(Collectors.toList());
 
     }
